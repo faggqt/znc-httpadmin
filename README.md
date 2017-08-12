@@ -14,6 +14,7 @@ Each function is called via basic HTTP GET requests to ZNC. As httpadmin is load
 	/addnetwork           (username, net_name, net_addr, net_port, [net_pass, net_ssl])
 	/delnetwork           (username, net_name)
 	/listnetworks         (username)
+	/listusers            (n/a)
 
 	/networkconnect       (username, net_name)
 	/networkdisconnect    (username, net_name)

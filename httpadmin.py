@@ -21,6 +21,7 @@ API functions:
 	/addnetwork           (username, net_name, net_addr, net_port, [net_pass, net_ssl])
 	/delnetwork           (username, net_name)
 	/listnetworks         (username)
+	/listusers            (n/a)
 
 	/networkconnect       (username, net_name)
 	/networkdisconnect    (username, net_name)
@@ -104,6 +105,9 @@ class httpadmin(znc.Module):
 
 		elif (action == "listnetworks"):
 			ret = self.ApiListNetworks(WebSock)
+			
+		elif (action == "listusers"):
+			ret = self.ApiListUsers(WebSock)
 
 		elif (action == "networkconnect"):
 			ret = self.ApiNetworkConnect(WebSock)
@@ -249,6 +253,14 @@ class httpadmin(znc.Module):
 
 		return {"error": False}
 
+
+	def ApiListUsers(self, WebSock):
+		user_list = []
+		users = znc.CZNC.Get().GetUserMap()
+		for user in users.items():
+			user_list.append(user[0])
+
+		return {"error": False, "users": user_list, "count": len(user_list)}
 
 
 	def ApiListNetworks(self, WebSock):
